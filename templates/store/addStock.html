@@ -1,0 +1,159 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Add Stock{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Stock</a></li>
+                            <li class="active">Add</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Add Stock</strong>
+            </div>
+            <div class="card-body">
+                <!-- Credit Card -->
+                <div id="pay-invoice">
+                    <div class="card-body">
+                        <form action="#" method="post" novalidate="novalidate">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="qrcode" class="control-label mb-1">Product QR Code</label>
+                                {{ form.qrcode }}
+                            </div>
+<!--                            <div class="form-group">-->
+<!--                                <label for="productcode" class="control-label mb-1">Product Code</label>-->
+<!--                                {{ form.productcode }}-->
+<!--                            </div>-->
+                            <div class="form-group">
+                                <label for="vehicleinvoiceno" class="control-label mb-1">Vehicle Invoice No</label>
+                                {{ form.vehicleinvoiceno }}
+                            </div>
+                            <div class="form-group">
+                                <label for="vehicleinvoicedatefromhe" class="control-label mb-1">Vehicle Invoice Date from HE</label>
+                                {{ form.vehicleinvoicedatefromhe }}
+                            </div>
+                            <div class="form-group">
+                                <label for="exciseinvoiceno" class="control-label mb-1">Excise Invoice No</label>
+                                {{ form.exciseinvoiceno }}
+                            </div>
+                            <div class="form-group">
+                                <label for="battery" class="control-label mb-1">Battery</label>
+                                {{ form.battery }}
+                            </div>
+                            <div class="form-group">
+                                <label for="model" class="control-label mb-1">Model</label>
+                                {{ form.model }}
+                            </div>
+                            <div class="form-group">
+                                <label for="color" class="control-label mb-1">Color</label>
+                                {{ form.color }}
+                            </div>
+                            <div class="form-group">
+                                <label for="vehiclechassisno" class="control-label mb-1">Vehicle Chassis No</label>
+                                {{ form.vehiclechassisno }}
+                            </div>
+                            <div class="form-group">
+                                <label for="motorno" class="control-label mb-1">Motor No</label>
+                                {{ form.motorno }}
+                            </div>
+                            <div class="form-group">
+                                <label for="controllerno" class="control-label mb-1">Controller No</label>
+                                {{ form.controllerno }}
+                            </div>
+                            <div class="form-group">
+                                <label for="chargerno" class="control-label mb-1">Charger No</label>
+                                {{ form.chargerno }}
+                            </div>
+                            <div class="form-group">
+                                <label for="chargerrating" class="control-label mb-1">Charger Rating</label>
+                                {{ form.chargerrating }}
+                            </div>
+                            <div class="form-group">
+                                <label for="ownersmanualno" class="control-label mb-1">Owner's Manual No</label>
+                                {{ form.ownersmanualno }}
+                            </div>
+                            <div class="form-group">
+                                <label for="heronumberplate" class="control-label mb-1">Hero Number Plate</label>
+                                {{ form.heronumberplate }}
+                            </div>
+                            <div class="form-group">
+                                <label for="toolkit" class="control-label mb-1">Tool kit status</label>
+                                {{ form.toolkit }}
+                            </div>
+                            <div class="form-group">
+                                <label for="rvmlhrh" class="control-label mb-1">Rvm LH/RH</label>
+                                {{ form.rvmlhrh }}
+                            </div>
+                            <div class="form-group">
+                                <label for="certcard" class="control-label mb-1">Cert. Card</label>
+                                {{ form.certcard }}
+                            </div>
+                            <div class="form-group">
+                                <label for="pdistatus" class="control-label mb-1">PDI status</label>
+                                {{ form.pdistatus }}
+                            </div>
+                            <div class="form-group">
+                                <label for="batterymake" class="control-label mb-1">Battery Make</label>
+                                {{ form.batterymake }}
+                            </div>
+                            <div class="form-group">
+                                <label for="batteryconnectortype" class="control-label mb-1">Battery Connector Type</label>
+                                {{ form.batteryconnectortype }}
+                            </div>
+                            <div class="form-group">
+                                <label for="engravednumberonbattery" class="control-label mb-1">Engraved Number on battery</label>
+                                {{ form.engravednumberonbattery }}
+                            </div>
+                            <div class="form-group">
+                                <label for="typeofbattery" class="control-label mb-1">Type of battery</label>
+                                {{ form.typeofbattery }}
+                            </div>
+                            <div class="form-group">
+                                <label for="batterycapacity" class="control-label mb-1">Battery capacity</label>
+                                {{ form.batterycapacity }}
+                            </div>
+                            <div class="form-group">
+                                <label for="batterycompleteserialno" class="control-label mb-1">Battery Complete serial no</label>
+                                {{ form.batterycompleteserialno }}
+                            </div>
+                            <div>
+                                <button id="payment-button" type="submit" class="btn btn-lg btn-success btn-block">
+                                    <span id="payment-button-amount">Save</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div> <!-- .card -->
+
+    </div><!--/.col-->
+</div>
+{% endblock content %}
