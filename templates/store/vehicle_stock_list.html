@@ -1,0 +1,99 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Vehicle stock List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Vehicle Stock</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'search' %}" method="get">
+                    <input name="q" type="text" placeholder="Search bike name">
+                </form>
+                <h4 class="box-title">Vehicle Stock List </h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Product Code</th>
+                                <th>Battery</th>
+                                <th>Model</th>
+                                <th>Color</th>
+                                <th>Vehicle Chassis No</th>
+                                <th>Charger Rating</th>
+                                <th>Tool kit status</th>
+                                <th>Rvm LH/RH</th>
+                                <th>Cert. Card</th>
+                                <th>PDI status</th>
+                                <th>Battery Connector Type</th>
+                                <th>Type of battery</th>
+                                <th>Battery capacity</th>
+                                <th>Created Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if vehiclestock %}
+                            {% for vehiclestock in vehiclestock %}
+                            {% if vehiclestock.available %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ vehiclestock.productcode }}</td>
+                                <td>{{ vehiclestock.battery }}</td>
+                                <td>{{ vehiclestock.model }}</td>
+                                <td>{{ vehiclestock.color }}</td>
+                                <td>{{ vehiclestock.vehiclechassisno }}</td>
+                                <td>{{ vehiclestock.chargerrating }}</td>
+                                <td>{{ vehiclestock.toolkit }}</td>
+                                <td>{{ vehiclestock.rvmlhrh }}</td>
+                                <td>{{ vehiclestock.certcard }}</td>
+                                <td>{{ vehiclestock.pdistatus }}</td>
+                                <td>{{ vehiclestock.batteryconnectortype }}</td>
+                                <td>{{ vehiclestock.typeofbattery }}</td>
+                                <td>{{ vehiclestock.batterycapacity }}</td>
+                                <td>{{ vehiclestock.created_date }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>No Vehicle Stock Data</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}

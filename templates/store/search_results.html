@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Vehicle stock List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Vehicle Stock</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'search' %}" method="get">
+                    <input name="q" type="text" placeholder="Search bike name">
+                </form>
+                <h4 class="box-title">Vehicle Stock List </h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Product Code</th>
+                                <th>Product Description</th>
+                                <th>Model</th>
+                                <th>Color</th>
+                                <th>Stock Available</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if vehiclestockdetails %}
+                            {% for vehiclestockdetails in vehiclestockdetails %}
+                            {% if vehiclestockdetails.total %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ vehiclestockdetails.productcode }}</td>
+                                <td>{{ vehiclestockdetails.productdesc }}</td>
+                                <td>{{ vehiclestockdetails.model }}</td>
+                                <td>{{ vehiclestockdetails.color }}</td>
+                                <td>{{ vehiclestockdetails.total }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>No Vehicle Stock Available</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}

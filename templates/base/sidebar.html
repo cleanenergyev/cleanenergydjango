@@ -47,6 +47,22 @@
                 </li>
 
                 <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Accessories</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-accessories' %}">Add</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'accessories-list' %}">View</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Stock</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-vehicle-stock' %}">Add</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'vehicle-list' %}">View</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-shopping-cart"></i>Order</a>
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-order' %}">Add</a></li>
@@ -59,6 +75,36 @@
                     <ul class="sub-menu children dropdown-menu">
                         <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-delivery' %}">Add</a></li>
                         <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'delivery-list' %}">View</a></li>
+                    </ul>
+                </li>
+
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Master</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-battery' %}">Add Battery</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-list' %}">View Battery</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-vehicle-model' %}">Add Model</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'vehicle-model-list' %}">View Model</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-color' %}">Add Color</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'color-list' %}">View Color</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-charger-rating' %}">Add Charger Rating</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'charger-rating-list' %}">View Charger Rating</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-toolkit-status' %}">Add Toolkit status</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'toolkit-status-list' %}">View Toolkit status</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-rvm-lhrh' %}">Add Rvm LH/RH</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'rvm-lhrh-list' %}">View Rvm LH/RH</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-cert-card' %}">Add Cert. card</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'cert-card-list' %}">View Cert. card</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-pdi-status' %}">Add PDI status</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'pdi-status-list' %}">View PDI status</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-battery-make' %}">Add Battery Make</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-make-list' %}">View Battery Make</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-battery-connector-type' %}">Add Battery Connector type</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-connector-type-list' %}">View Battery connector type</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-battery-type' %}">Add Battery type</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-type-list' %}">View Battery Type</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-battery-capacity' %}">Add Battery capacity</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-capacity-list' %}">View Battery capacity</a></li>
                     </ul>
                 </li>
             </ul>
