@@ -88,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'herodb',
-        'USER': 'postgres',
-        'PASSWORD': '963852741',
+        'USER': 'sangramsahu',
+        'PASSWORD': 'Bhubaneswar12345',
         'HOST': 'localhost',
         'PORT': '5432'
     }
