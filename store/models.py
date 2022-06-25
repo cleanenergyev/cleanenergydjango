@@ -169,8 +169,8 @@ class VehicleStock(models.Model):
     battery = models.ForeignKey(Battery, on_delete=models.CASCADE)
     model = models.ForeignKey(VehicleModel, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
-    vehiclechassisno = models.CharField(max_length=120)
-    motorno = models.CharField(max_length=120)
+    vehiclechassisno = models.CharField(max_length=120, unique=True)
+    motorno = models.CharField(max_length=120, unique=True)
     controllerno = models.CharField(max_length=120)
     chargerno = models.CharField(max_length=120)
     chargerrating = models.ForeignKey(ChargerRating, on_delete=models.CASCADE)
@@ -186,6 +186,7 @@ class VehicleStock(models.Model):
     typeofbattery = models.ForeignKey(BatteryType, on_delete=models.CASCADE)
     batterycapacity = models.ForeignKey(BatteryCapacity, on_delete=models.CASCADE)
     batterycompleteserialno = models.CharField(max_length=50, blank=True, null=True)
+    batterycompleteserialno2 = models.CharField(max_length=50, blank=True, null=True, default='')
     available = models.BooleanField(default=True)
     created_date = models.DateField(auto_now_add=True)
 
