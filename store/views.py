@@ -222,6 +222,7 @@ def create_vehicle_stock(request):
             typeofbattery = forms.cleaned_data['typeofbattery']
             batterycapacity = forms.cleaned_data['batterycapacity']
             batterycompleteserialno = forms.cleaned_data['batterycompleteserialno']
+            batterycompleteserialno2 = forms.cleaned_data['batterycompleteserialno2']
             available = True
             productdesctest = Product.objects.filter(productcode=qrcode.split('A')[0])
             print(productdesctest)
@@ -252,6 +253,7 @@ def create_vehicle_stock(request):
                 typeofbattery=typeofbattery,
                 batterycapacity=batterycapacity,
                 batterycompleteserialno=batterycompleteserialno,
+                batterycompleteserialno2=batterycompleteserialno2,
                 available=available
             )
             return redirect('vehicle-list')

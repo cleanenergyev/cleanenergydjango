@@ -138,7 +138,7 @@ class VehicleStockForm(forms.ModelForm):
                   'model', 'color', 'vehiclechassisno', 'motorno', 'controllerno', 'chargerno', 'chargerrating',
                   'ownersmanualno', 'heronumberplate', 'toolkit', 'rvmlhrh', 'certcard', 'pdistatus', 'batterymake',
                   'batteryconnectortype', 'engravednumberonbattery', 'typeofbattery', 'batterycapacity',
-                  'batterycompleteserialno']
+                  'batterycompleteserialno', 'batterycompleteserialno2']
         widgets = {
             'qrcode': forms.TextInput(attrs={'class': 'form-control', 'id': 'qrcode'}),
             'vehicleinvoiceno': forms.TextInput(attrs={'class': 'form-control', 'id': 'vehicleinvoiceno'}),
@@ -164,6 +164,7 @@ class VehicleStockForm(forms.ModelForm):
             'typeofbattery': forms.Select(attrs={'class': 'form-control', 'id': 'typeofbattery'}),
             'batterycapacity': forms.Select(attrs={'class': 'form-control', 'id': 'batterycapacity'}),
             'batterycompleteserialno': forms.TextInput(attrs={'class': 'form-control', 'id': 'batterycompleteserialno'}),
+            'batterycompleteserialno2': forms.TextInput(attrs={'class': 'form-control', 'id': 'batterycompleteserialno2'})
         }
 
 
