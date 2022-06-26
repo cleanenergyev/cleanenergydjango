@@ -232,9 +232,7 @@ def create_vehicle_stock(request):
             batterycompleteserialno = forms.cleaned_data['batterycompleteserialno']
             batterycompleteserialno2 = forms.cleaned_data['batterycompleteserialno2']
             available = True
-            print(productcd)
             productdesctest = Product.objects.filter(productcode=productcd)
-            print(productdesctest)
 
             VehicleStock.objects.create(
                 qrcode=qrcode,
