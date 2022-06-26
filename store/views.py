@@ -198,7 +198,15 @@ def create_vehicle_stock(request):
         forms = VehicleStockForm(request.POST)
         if forms.is_valid():
             # forms.save()
+            ch = 'a'
+            ch1 = 'A'
             qrcode = forms.cleaned_data['qrcode']
+            if ch in qrcode:
+                productcd = qrcode.split('a')[0]
+            elif ch1 in qrcode:
+                productcd = qrcode.split('A')[0]
+            else:
+                raise Exception('Invalid qrcode')
             vehicleinvoiceno = forms.cleaned_data['vehicleinvoiceno']
             vehicleinvoicedatefromhe = forms.cleaned_data['vehicleinvoicedatefromhe']
             exciseinvoiceno = forms.cleaned_data['exciseinvoiceno']
@@ -224,11 +232,13 @@ def create_vehicle_stock(request):
             batterycompleteserialno = forms.cleaned_data['batterycompleteserialno']
             batterycompleteserialno2 = forms.cleaned_data['batterycompleteserialno2']
             available = True
-            productdesctest = Product.objects.filter(productcode=qrcode.split('A')[0])
+            print(productcd)
+            productdesctest = Product.objects.filter(productcode=productcd)
             print(productdesctest)
+
             VehicleStock.objects.create(
                 qrcode=qrcode,
-                productcode=qrcode.split('A')[0],
+                productcode=productcd,
                 productdesc=productdesctest[0],
                 vehicleinvoiceno=vehicleinvoiceno,
                 vehicleinvoicedatefromhe=vehicleinvoicedatefromhe,
