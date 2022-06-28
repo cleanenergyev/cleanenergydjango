@@ -236,9 +236,7 @@ def create_vehicle_stock(request):
             batterycompleteserialno = forms.cleaned_data['batterycompleteserialno']
             batterycompleteserialno2 = forms.cleaned_data['batterycompleteserialno2']
             available = True
-            print(productcd)
             productdesctest = Product.objects.filter(productcode=productcd)
-            print(productdesctest)
 
             VehicleStock.objects.create(
                 qrcode=qrcode,
@@ -602,8 +600,8 @@ class SearchResultsView(ListView):
             .annotate(total=Count('color')) \
             .filter(Q(productdesc__icontains=query) & Q(available=True))
         return context
-
-
+        
+        
 @login_required(login_url='login')
 def create_uom(request):
     forms = UomForm()
