@@ -10,6 +10,7 @@ from .views import (
     create_delivery,
     create_accessories,
     create_vehicle_stock,
+    create_spareparts_stock,
     create_battery,
     create_vehicle_model,
     create_color,
@@ -22,6 +23,7 @@ from .views import (
     create_battery_connector_type,
     create_battery_type,
     create_battery_capacity,
+    create_uom,
 
     SupplierListView,
     BuyerListView,
@@ -32,6 +34,7 @@ from .views import (
     DeliveryListView,
     AccessoriesListView,
     VehicleListView,
+    SpareListView,
     BatteriesListView,
     VehicleModelListView,
     ColorListView,
@@ -45,6 +48,8 @@ from .views import (
     BatteryTypeListView,
     BatteryCapacityListView,
     SearchResultsView,
+    UomListView,
+    SpareSearchView
 )
 
 urlpatterns = [
@@ -57,6 +62,7 @@ urlpatterns = [
     path('create-delivery/', create_delivery, name='create-delivery'),
     path('create-accessories/', create_accessories, name='create-accessories'),
     path('create-vehicle-stock/', create_vehicle_stock, name='create-vehicle-stock'),
+    path('create-spareparts-stock/', create_spareparts_stock, name='create-spareparts-stock'),
     path('create-battery/', create_battery, name='create-battery'),
     path('create-vehicle-model/', create_vehicle_model, name='create-vehicle-model'),
     path('create-color/', create_color, name='create-color'),
@@ -69,6 +75,7 @@ urlpatterns = [
     path('create-battery-connector-type/', create_battery_connector_type, name='create-battery-connector-type'),
     path('create-battery-type/', create_battery_type, name='create-battery-type'),
     path('create-battery-capacity/', create_battery_capacity, name='create-battery-capacity'),
+    path('create-uom/', create_uom, name='create-uom'),
 
     path('battery-list/', BatteriesListView.as_view(), name='battery-list'),
     path('vehicle-model-list/', VehicleModelListView.as_view(), name='vehicle-model-list'),
@@ -91,5 +98,8 @@ urlpatterns = [
     path('delivery-list/', DeliveryListView.as_view(), name='delivery-list'),
     path('accessories-list/', AccessoriesListView.as_view(), name='accessories-list'),
     path('vehicle-list/', VehicleListView.as_view(), name='vehicle-list'),
+    path('spareparts-list/', SpareListView.as_view(), name='spareparts-list'),
     path("search/", SearchResultsView.as_view(), name="search"),
+    path('uom-list/', UomListView.as_view(), name='uom-list'),
+    path("search-spare/", SpareSearchView.as_view(), name="search-spare"),
 ]

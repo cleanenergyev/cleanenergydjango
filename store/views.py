@@ -25,7 +25,9 @@ from .models import (
     BatteryMake,
     BatteryConnectorType,
     BatteryType,
-    BatteryCapacity
+    BatteryCapacity,
+    Uom,
+    SparePartsStock
 )
 from .forms import (
     SupplierForm,
@@ -48,7 +50,9 @@ from .forms import (
     BatteryMakeForm,
     BatteryConnectorTypeForm,
     BatteryTypeForm,
-    BatteryCapacityForm
+    BatteryCapacityForm,
+    UomForm,
+    SpareStockForm
 )
 
 # Supplier views
@@ -594,9 +598,88 @@ class SearchResultsView(ListView):
         context = super().get_context_data(**kwargs)
         query = self.request.GET.get('q')
         context['x'] = VehicleStock.objects.all().order_by
-        print(context)
-        print(VehicleStock.objects.values_list('productcode', 'color', 'model', 'productdesc'))
         context['vehiclestockdetails'] = VehicleStock.objects.values('productcode', 'color', 'model', 'productdesc') \
             .annotate(total=Count('color')) \
             .filter(Q(productdesc__icontains=query) & Q(available=True))
+        return context
+
+
+@login_required(login_url='login')
+def create_uom(request):
+    forms = UomForm()
+    if request.method == 'POST':
+        forms = UomForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('uom-list')
+    context = {
+        'form': forms
+    }
+    return render(request, 'store/addUom.html', context)
+
+
+class UomListView(ListView):
+    model = Uom
+    template_name = 'store/uom_list.html'
+    context_object_name = 'uom'
+
+
+@login_required(login_url='login')
+def create_spareparts_stock(request):
+    forms = SpareStockForm()
+    if request.method == 'POST':
+        forms = SpareStockForm(request.POST)
+        if forms.is_valid():
+            ch = 'a'
+            ch1 = 'A'
+            qrcode = forms.cleaned_data['qrcode']
+            if ch in qrcode:
+                materialcd = qrcode.split('a')[0]
+            elif ch1 in qrcode:
+                materialcd = qrcode.split('A')[0]
+            else:
+                raise Exception('Invalid qrcode')
+            uom = forms.cleaned_data['uom']
+            vendorinvoiceno = forms.cleaned_data['vendorinvoiceno']
+            vendorinvoicedate = forms.cleaned_data['vendorinvoicedate']
+            available = True
+            materialdesctest = Product.objects.filter(productcode=materialcd)
+
+            SparePartsStock.objects.create(
+                qrcode=qrcode,
+                materialcode=materialcd,
+                materialdesc=materialdesctest[0],
+                uom=uom,
+                vendorinvoicedate=vendorinvoicedate,
+                vendorinvoiceno=vendorinvoiceno,
+                available=available
+            )
+            return redirect('spareparts-list')
+    context = {
+        'form': forms
+    }
+    return render(request, 'store/addSparePartsStock.html', context)
+
+
+class SpareListView(ListView):
+    model = SparePartsStock
+    template_name = 'store/spareparts_stock_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sparepartsstock'] = SparePartsStock.objects.all().order_by('-id')
+        return context
+
+
+class SpareSearchView(ListView):
+    model = SparePartsStock
+    template_name = 'store/search_spare.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = self.request.GET.get('q')
+        context['x'] = SparePartsStock.objects.all().order_by
+        context['sparestockdetails'] = SparePartsStock.objects.values('materialcode', 'materialdesc', 'uom') \
+            .annotate(total=Count('materialcode')) \
+            .filter(Q(materialdesc__icontains=query) & Q(available=True))
         return context

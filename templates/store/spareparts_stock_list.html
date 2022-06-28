@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Sapre-parts stock List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Spare-parts Stock</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'search-spare' %}" method="get">
+                    <input name="q" type="text" placeholder="Search spare-parts name">
+                </form>
+                <h4 class="box-title">Spare-parts Stock List </h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Material Code</th>
+                                <th>Material Description</th>
+                                <th>UOM</th>
+                                <th>Vendor Invoice Date</th>
+                                <th>Vendor Invoice Number</th>
+                                <th>Created Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if sparepartsstock %}
+                            {% for sparepartsstock in sparepartsstock %}
+                            {% if sparepartsstock.available %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ sparepartsstock.materialcode }}</td>
+                                <td>{{ sparepartsstock.materialdesc }}</td>
+                                <td>{{ sparepartsstock.uom }}</td>
+                                <td>{{ sparepartsstock.vendorinvoicedate }}</td>
+                                <td>{{ sparepartsstock.vendorinvoiceno }}</td>
+                                <td>{{ sparepartsstock.created_date }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>No Spare parts data available</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}
