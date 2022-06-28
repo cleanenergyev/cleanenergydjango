@@ -2,7 +2,7 @@ from django import forms
 
 from .models import Season, Drop, Product, Order, Delivery, Accessories, Battery, VehicleModel, Color, \
     ChargerRating, ToolkitStatus, RvmLhrh, CertCard, PdiStatus, BatteryMake, BatteryConnectorType, BatteryType,\
-    BatteryCapacity, VehicleStock
+    BatteryCapacity, VehicleStock, Uom, SparePartsStock
 
 
 class SupplierForm(forms.Form):
@@ -312,4 +312,27 @@ class BatteryCapacityForm(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'})
+        }
+
+
+class UomForm(forms.ModelForm):
+    class Meta:
+        model = Uom
+        fields = ['name']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'})
+        }
+
+
+class SpareStockForm(forms.ModelForm):
+    class Meta:
+        model = SparePartsStock
+        fields = ['qrcode', 'uom', 'vendorinvoiceno', 'vendorinvoicedate']
+
+        widgets = {
+            'qrcode': forms.TextInput(attrs={'class': 'form-control', 'id': 'qrcode'}),
+            'uom': forms.Select(attrs={'class': 'form-control', 'id': 'uom'}),
+            'vendorinvoiceno': forms.TextInput(attrs={'class': 'form-control', 'id': 'vendorinvoiceno'}),
+            'vendorinvoicedate': DateInput()
         }

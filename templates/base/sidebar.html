@@ -61,6 +61,13 @@
                         <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'vehicle-list' %}">View</a></li>
                     </ul>
                 </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Spare-parts Stock</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-spareparts-stock' %}">Add</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'spareparts-list' %}">View</a></li>
+                    </ul>
+                </li>
 
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-shopping-cart"></i>Order</a>
@@ -105,6 +112,8 @@
                         <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-type-list' %}">View Battery Type</a></li>
                         <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-battery-capacity' %}">Add Battery capacity</a></li>
                         <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-capacity-list' %}">View Battery capacity</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-uom' %}">Add Uom</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'uom-list' %}">View Uom</a></li>
                     </ul>
                 </li>
             </ul>

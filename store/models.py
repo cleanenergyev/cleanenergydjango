@@ -225,6 +225,7 @@ class VehicleStockDetails(models.Model):
     def __str__(self):
         return self.productdesc
 
+
 class Delivery(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     courier_name = models.CharField(max_length=120)
@@ -232,3 +233,25 @@ class Delivery(models.Model):
 
     def __str__(self):
         return self.courier_name
+
+
+class Uom(models.Model):
+    name = models.CharField(max_length=120, unique=True)
+    created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
+class SparePartsStock(models.Model):
+    qrcode = models.CharField(max_length=120, unique=True)
+    materialcode = models.PositiveIntegerField()
+    materialdesc = models.CharField(max_length=120)
+    uom = models.ForeignKey(Uom, on_delete=models.CASCADE)
+    vendorinvoicedate = models.DateField()
+    vendorinvoiceno = models.CharField(max_length=120)
+    available = models.BooleanField(default=True)
+    created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.qrcode
