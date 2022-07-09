@@ -173,6 +173,7 @@ class VehicleStock(models.Model):
     motorno = models.CharField(max_length=120, unique=True)
     controllerno = models.CharField(max_length=120)
     chargerno = models.CharField(max_length=120)
+    chargerno2 = models.CharField(max_length=120, blank=True, null=True, default='')
     chargerrating = models.ForeignKey(ChargerRating, on_delete=models.CASCADE)
     ownersmanualno = models.CharField(max_length=120)
     heronumberplate = models.CharField(max_length=20, default='NA', blank=True, null=True)
@@ -255,3 +256,24 @@ class SparePartsStock(models.Model):
 
     def __str__(self):
         return self.qrcode
+
+
+class PaymentMode(models.Model):
+    name = models.CharField(max_length=120, unique=True)
+    created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+class MoneyReceipt(models.Model):
+    # mr_no = models.AutoField(primary_key=True)
+    customer_name = models.CharField(max_length=120)
+    mobileno = models.CharField(max_length=10)
+    paid_amount = models.PositiveIntegerField()
+    pay_reason = models.CharField(max_length=120)
+    pay_mode = models.ForeignKey(PaymentMode, on_delete=models.CASCADE)
+    pay_no = models.CharField(max_length=120)
+    created_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.customer_name

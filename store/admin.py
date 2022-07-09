@@ -21,7 +21,10 @@ from .models import (
     BatteryType,
     BatteryCapacity,
     VehicleStock,
-    VehicleStockDetails
+    VehicleStockDetails,
+    PaymentMode,
+    MoneyReceipt,
+
 )
 
 class SupplierAdmin(admin.ModelAdmin):
@@ -51,3 +54,5 @@ admin.site.register(BatteryType)
 admin.site.register(BatteryCapacity)
 admin.site.register(VehicleStock)
 admin.site.register(VehicleStockDetails)
+admin.site.register(PaymentMode)
+admin.site.register(MoneyReceipt)

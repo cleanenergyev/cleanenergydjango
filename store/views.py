@@ -27,7 +27,9 @@ from .models import (
     BatteryType,
     BatteryCapacity,
     Uom,
-    SparePartsStock
+    SparePartsStock,
+    MoneyReceipt,
+    PaymentMode
 )
 from .forms import (
     SupplierForm,
@@ -52,7 +54,9 @@ from .forms import (
     BatteryTypeForm,
     BatteryCapacityForm,
     UomForm,
-    SpareStockForm
+    SpareStockForm,
+    MoneyReceiptForm,
+    PaymentModeForm
 )
 
 # Supplier views
@@ -221,6 +225,7 @@ def create_vehicle_stock(request):
             motorno = forms.cleaned_data['motorno']
             controllerno = forms.cleaned_data['controllerno']
             chargerno = forms.cleaned_data['chargerno']
+            chargerno2 = forms.cleaned_data['chargerno2']
             chargerrating = forms.cleaned_data['chargerrating']
             ownersmanualno = forms.cleaned_data['ownersmanualno']
             heronumberplate = forms.cleaned_data['heronumberplate']
@@ -252,6 +257,7 @@ def create_vehicle_stock(request):
                 motorno=motorno,
                 controllerno=controllerno,
                 chargerno=chargerno,
+                chargerno2=chargerno2,
                 chargerrating=chargerrating,
                 ownersmanualno=ownersmanualno,
                 heronumberplate=heronumberplate,
@@ -681,3 +687,77 @@ class SpareSearchView(ListView):
             .annotate(total=Count('materialcode')) \
             .filter(Q(materialdesc__icontains=query) & Q(available=True))
         return context
+
+@login_required(login_url='login')
+def create_payment_mode(request):
+    forms = PaymentModeForm()
+    if request.method == 'POST':
+        forms = PaymentModeForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('payment-mode-list')
+    context = {
+        'form': forms
+    }
+    return render(request, 'store/addPaymentMode.html', context)
+
+
+class PaymentModeListView(ListView):
+    model = PaymentMode
+    template_name = 'store/payment_mode_list.html'
+    context_object_name = 'paymentmode'
+
+
+@login_required(login_url='login')
+def generate_money_receipt(request):
+    forms = MoneyReceiptForm()
+    if request.method == 'POST':
+        forms = MoneyReceiptForm(request.POST)
+        print(forms)
+        print(forms.is_valid())
+        if forms.is_valid():
+            print('hello')
+            customer_name = forms.cleaned_data['customer_name']
+            mobileno = forms.cleaned_data['mobileno']
+            paid_amount = forms.cleaned_data['paid_amount']
+            pay_reason = forms.cleaned_data['pay_reason']
+            pay_mode = forms.cleaned_data['pay_mode']
+            pay_no = forms.cleaned_data['pay_no']
+
+            MoneyReceipt.objects.create(
+                customer_name=customer_name,
+                mobileno=mobileno,
+                paid_amount=paid_amount,
+                pay_reason=pay_reason,
+                pay_mode=pay_mode,
+                pay_no=pay_no
+            )
+            return redirect('money-receipt-list')
+    context = {
+        'form': forms
+    }
+    return render(request, 'store/generateMoneyReceipt.html', context)
+
+
+class MoneyReceiptListView(ListView):
+    model = MoneyReceipt
+    template_name = 'store/money_receipt_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['moneyreceipt'] = MoneyReceipt.objects.all().order_by('-id')
+        return context
+
+
+# class SpareSearchView(ListView):
+#     model = SparePartsStock
+#     template_name = 'store/search_spare.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         query = self.request.GET.get('q')
+#         context['x'] = SparePartsStock.objects.all().order_by
+#         context['sparestockdetails'] = SparePartsStock.objects.values('materialcode', 'materialdesc', 'uom') \
+#             .annotate(total=Count('materialcode')) \
+#             .filter(Q(materialdesc__icontains=query) & Q(available=True))
+#         return context

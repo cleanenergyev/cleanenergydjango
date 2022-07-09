@@ -6,6 +6,13 @@
                     <a href="{% url 'dashboard' %}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                 </li>
                 <li class="menu-title" style="color: white">My Store</li><!-- /.menu-title -->
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Money Receipt</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'generate-money-receipt' %}">Generate</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'money-receipt-list' %}">View</a></li>
+                    </ul>
+                </li>
                 <li class="menu-item-has-children dropdown" >
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Supplier</a>
                     <ul class="sub-menu children dropdown-menu">
@@ -114,6 +121,8 @@
                         <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'battery-capacity-list' %}">View Battery capacity</a></li>
                         <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-uom' %}">Add Uom</a></li>
                         <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'uom-list' %}">View Uom</a></li>
+                        <li><i class="fa fa-plus-circle" style="color: darkblue"></i><a href="{% url 'create-payment-mode' %}">Add Payment Mode</a></li>
+                        <li><i class="fa fa-eye" style="color: darkblue"></i><a href="{% url 'payment-mode-list' %}">View Payment Mode</a></li>
                     </ul>
                 </li>
             </ul>
