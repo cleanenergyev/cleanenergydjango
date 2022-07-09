@@ -713,10 +713,8 @@ def generate_money_receipt(request):
     forms = MoneyReceiptForm()
     if request.method == 'POST':
         forms = MoneyReceiptForm(request.POST)
-        print(forms)
-        print(forms.is_valid())
+        
         if forms.is_valid():
-            print('hello')
             customer_name = forms.cleaned_data['customer_name']
             mobileno = forms.cleaned_data['mobileno']
             paid_amount = forms.cleaned_data['paid_amount']
