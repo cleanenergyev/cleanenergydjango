@@ -2,7 +2,7 @@ from django import forms
 
 from .models import Season, Drop, Product, Order, Delivery, Accessories, Battery, VehicleModel, Color, \
     ChargerRating, ToolkitStatus, RvmLhrh, CertCard, PdiStatus, BatteryMake, BatteryConnectorType, BatteryType,\
-    BatteryCapacity, VehicleStock, Uom, SparePartsStock
+    BatteryCapacity, VehicleStock, Uom, SparePartsStock, MoneyReceipt, PaymentMode
 
 
 class SupplierForm(forms.Form):
@@ -135,7 +135,7 @@ class VehicleStockForm(forms.ModelForm):
     class Meta:
         model = VehicleStock
         fields = ['qrcode', 'vehicleinvoiceno', 'vehicleinvoicedatefromhe', 'exciseinvoiceno', 'battery',
-                  'model', 'color', 'vehiclechassisno', 'motorno', 'controllerno', 'chargerno', 'chargerrating',
+                  'model', 'color', 'vehiclechassisno', 'motorno', 'controllerno', 'chargerno','chargerno2', 'chargerrating',
                   'ownersmanualno', 'heronumberplate', 'toolkit', 'rvmlhrh', 'certcard', 'pdistatus', 'batterymake',
                   'batteryconnectortype', 'engravednumberonbattery', 'typeofbattery', 'batterycapacity',
                   'batterycompleteserialno', 'batterycompleteserialno2']
@@ -151,6 +151,7 @@ class VehicleStockForm(forms.ModelForm):
             'motorno': forms.TextInput(attrs={'class': 'form-control', 'id': 'motorno'}),
             'controllerno': forms.TextInput(attrs={'class': 'form-control', 'id': 'controllerno'}),
             'chargerno': forms.TextInput(attrs={'class': 'form-control', 'id': 'chargerno'}),
+            'chargerno2': forms.TextInput(attrs={'class': 'form-control', 'id': 'chargerno2'}),
             'chargerrating': forms.Select(attrs={'class': 'form-control', 'id': 'chargerrating'}),
             'ownersmanualno': forms.TextInput(attrs={'class': 'form-control', 'id': 'ownersmanualno'}),
             'heronumberplate': forms.TextInput(attrs={'class': 'form-control', 'id': 'heronumberplate'}),
@@ -335,4 +336,29 @@ class SpareStockForm(forms.ModelForm):
             'uom': forms.Select(attrs={'class': 'form-control', 'id': 'uom'}),
             'vendorinvoiceno': forms.TextInput(attrs={'class': 'form-control', 'id': 'vendorinvoiceno'}),
             'vendorinvoicedate': DateInput()
+        }
+
+
+class MoneyReceiptForm(forms.ModelForm):
+    class Meta:
+        model = MoneyReceipt
+        fields = ['customer_name', 'mobileno', 'paid_amount', 'pay_reason', 'pay_mode', 'pay_no']
+
+        widgets = {
+            'customer_name': forms.TextInput(attrs={'class': 'form-control', 'id': 'customername'}),
+            'mobileno': forms.TextInput(attrs={'class': 'form-control', 'id': 'mobileno'}),
+            'paid_amount': forms.TextInput(attrs={'class': 'form-control', 'id': 'amount'}),
+            'pay_reason': forms.TextInput(attrs={'class': 'form-control', 'id': 'reason'}),
+            'pay_mode': forms.Select(attrs={'class': 'form-control', 'id': 'paymode'}),
+            'pay_no': forms.TextInput(attrs={'class': 'form-control', 'id': 'payid'})
+        }
+
+
+class PaymentModeForm(forms.ModelForm):
+    class Meta:
+        model = PaymentMode
+        fields = ['name']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'})
         }

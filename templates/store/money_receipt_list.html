@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Money Receipt List{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Money Receipts</a></li>
+                            <li class="active">List</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="{% url 'search-spare' %}" method="get">
+                    <input name="q" type="text" placeholder="Search spare-parts name">
+                </form>
+                <h4 class="box-title">Spare-parts Stock List </h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>MR no.</th>
+                                <th>Customer Name</th>
+                                <th>Mobile No</th>
+                                <th>Amount paid</th>
+                                <th>Reason</th>
+                                <th>Payment mode</th>
+                                <th>Payment id</th>
+                                <th>Created Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if moneyreceipt %}
+                            {% for moneyreceipt in moneyreceipt %}
+                            <tr>
+                                <td class="serial">{{ forloop.counter }}</td>
+                                <td>{{ moneyreceipt.id }}</td>
+                                <td>{{ moneyreceipt.customer_name }}</td>
+                                <td>{{ moneyreceipt.mobileno }}</td>
+                                <td>{{ moneyreceipt.paid_amount }}</td>
+                                <td>{{ moneyreceipt.pay_reason }}</td>
+                                <td>{{ moneyreceipt.pay_mode }}</td>
+                                <td>{{ moneyreceipt.pay_no }}</td>
+                                <td>{{ moneyreceipt.created_date }}</td>
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                                <tr><td>No Money Receipts available</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-lg-8 -->
+
+    
+</div>
+{% endblock content %}

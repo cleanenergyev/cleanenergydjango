@@ -1,6 +1,7 @@
 from django.urls import path
 
 from .views import (
+    generate_money_receipt,
     create_supplier,
     create_buyer,
     create_season,
@@ -24,6 +25,7 @@ from .views import (
     create_battery_type,
     create_battery_capacity,
     create_uom,
+    create_payment_mode,
 
     SupplierListView,
     BuyerListView,
@@ -35,6 +37,7 @@ from .views import (
     AccessoriesListView,
     VehicleListView,
     SpareListView,
+    MoneyReceiptListView,
     BatteriesListView,
     VehicleModelListView,
     ColorListView,
@@ -49,10 +52,12 @@ from .views import (
     BatteryCapacityListView,
     SearchResultsView,
     UomListView,
-    SpareSearchView
+    SpareSearchView,
+    PaymentModeListView
 )
 
 urlpatterns = [
+    path('generate-money-receipt/', generate_money_receipt, name='generate-money-receipt'),
     path('create-supplier/', create_supplier, name='create-supplier'),
     path('create-buyer/', create_buyer, name='create-buyer'),
     path('create-season/', create_season, name='create-season'),
@@ -76,7 +81,9 @@ urlpatterns = [
     path('create-battery-type/', create_battery_type, name='create-battery-type'),
     path('create-battery-capacity/', create_battery_capacity, name='create-battery-capacity'),
     path('create-uom/', create_uom, name='create-uom'),
+    path('create-payment-mode/', create_payment_mode, name='create-payment-mode'),
 
+    path('money-receipt-list/', MoneyReceiptListView.as_view(), name='money-receipt-list'),
     path('battery-list/', BatteriesListView.as_view(), name='battery-list'),
     path('vehicle-model-list/', VehicleModelListView.as_view(), name='vehicle-model-list'),
     path('color-list/', ColorListView.as_view(), name='color-list'),
@@ -102,4 +109,5 @@ urlpatterns = [
     path("search/", SearchResultsView.as_view(), name="search"),
     path('uom-list/', UomListView.as_view(), name='uom-list'),
     path("search-spare/", SpareSearchView.as_view(), name="search-spare"),
+    path('payment-mode-list/', PaymentModeListView.as_view(), name='payment-mode-list'),
 ]
